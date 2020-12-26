@@ -40,6 +40,11 @@ closeAdjustments.forEach((btn, index) => {
     closeAdjustmentPanel(index);
   });
 });
+lockBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    toggleLock(index);
+  });
+});
 
 // Functions
 // Color Generator
@@ -63,7 +68,12 @@ function randomColors() {
     const randomColor = generateHex();
 
     // Save color to array
-    initialColors.push(chroma(randomColor).hex());
+    if (div.classList.contains('locked')) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      initialColors.push(chroma(randomColor).hex());
+    }
 
     // Add color to background
     div.style.backgroundColor = randomColor;
@@ -198,6 +208,16 @@ function openAdjustmentPanel(index) {
 
 function closeAdjustmentPanel(index) {
   sliderContainers[index].classList.remove('active');
+}
+
+function toggleLock(index) {
+  colorDivs[index].classList.toggle('locked');
+  lockBtns[index].innerHTML = '<i class="fas fa-lock"></i>';
+  if (colorDivs[index].classList.contains('locked')) {
+    lockBtns[index].innerHTML = '<i class="fas fa-lock"></i>';
+  } else {
+    lockBtns[index].innerHTML = '<i class="fas fa-lock-open"></i>';
+  }
 }
 
 randomColors();
