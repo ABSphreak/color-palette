@@ -6,14 +6,16 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  color: rgb(51,51,51);
+  color: rgb(51, 51, 51);
 }
 
 button {
   font-family: 'Nunito', sans-serif;
 }
 
-path, i, svg {
+path,
+i,
+svg {
   pointer-events: none;
 }
 
@@ -39,7 +41,8 @@ path, i, svg {
   cursor: pointer;
 }
 
-.adjust,.lock {
+.adjust,
+.lock {
   font-size: 2rem;
   border: none;
   background: none;
@@ -55,6 +58,7 @@ path, i, svg {
   background: white;
   padding: 1rem;
   width: 80%;
+  opacity: 0;
   border-radius: 1rem 1rem 0 0;
   pointer-events: none;
   /* Adjustment Class */
@@ -106,8 +110,61 @@ path, i, svg {
   font-size: 1.2rem;
 }
 
-.library-panel,.generate-panel,.save-panel {
+.library-panel,
+.generate-panel,
+.save-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Slider Stuff */
+input[type='range'] {
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.copy-container {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.copy-popup {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 2rem;
+  transition: transform 0.5s ease;
+  transform: translateY(-2rem);
+  min-width: 30%;
+  min-height: 30vh;
+}
+
+.copy-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.copy-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.copy-popup.active {
+  transform: translateY(0rem);
 }
